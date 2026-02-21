@@ -109,6 +109,7 @@ export async function subscribeToVaultEvents(
       }
     });
 
+    // ethers WebSocketLike interface omits onclose; cast to access the underlying ws property
     (provider.websocket as any).onclose = () => {
       logger.warn("WebSocket closed, reconnecting...");
       attempt++;

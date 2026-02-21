@@ -25,7 +25,7 @@ app.use(express.json());
 app.use((req, res, next) => {
   const requestId = uuidv4();
   res.setHeader("X-Request-ID", requestId);
-  (req as any).requestId = requestId;
+  req.requestId = requestId;
   next();
 });
 
@@ -39,7 +39,7 @@ app.use((req, res, next) => {
       path: req.path,
       status: res.statusCode,
       duration,
-      requestId: (req as any).requestId,
+      requestId: req.requestId,
     });
     apiRequestCounter.inc({ route: req.path, status: res.statusCode.toString() });
   });

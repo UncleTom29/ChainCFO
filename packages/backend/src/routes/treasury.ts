@@ -30,8 +30,8 @@ treasuryRouter.get("/stats", async (_req: Request, res: Response) => {
     const provider = getProvider();
     const vaultAddress = process.env.NEXT_PUBLIC_TREASURY_ADDRESS || "";
 
-    let tvlUsd = "0";
-    let totalShares = "0";
+    let tvlUsdFormatted = "0";
+    let totalSharesFormatted = "0";
 
     if (vaultAddress && ethers.isAddress(vaultAddress)) {
       const vault = new ethers.Contract(vaultAddress, TREASURY_ABI, provider);
@@ -40,8 +40,8 @@ treasuryRouter.get("/stats", async (_req: Request, res: Response) => {
           vault.getTVL(),
           vault.totalShares(),
         ]);
-        tvlUsd = ethers.formatUnits(tvl, 6);
-        totalShares = ethers.formatUnits(shares, 6);
+        tvlUsdFormatted = ethers.formatUnits(tvl, 6);
+        totalSharesFormatted = ethers.formatUnits(shares, 6);
       } catch (contractErr) {
         logger.warn("Could not read vault contract", { error: (contractErr as Error).message });
       }
@@ -57,8 +57,8 @@ treasuryRouter.get("/stats", async (_req: Request, res: Response) => {
       : null;
 
     res.json(successResponse({
-      tvlUsd,
-      totalShares,
+      tvlUsd: tvlUsdFormatted,
+      totalShares: totalSharesFormatted,
       currentAllocations: latestReport?.allocations ?? [],
       lastRebalanced: latestReport?.timestamp ?? null,
       nextRebalance: nextRebalanceMs,
