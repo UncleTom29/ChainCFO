@@ -50,7 +50,7 @@ echo "  ChainCFOCCIPReceiver: $CCIP_RECEIVER_ADDRESS"
 echo ""
 echo "⚙️  Updating CRE workflow configuration..."
 cd "$(dirname "$0")/../packages/cre-workflow"
-sed -i "s|\${GOVERNANCE_CONTRACT}|$GOVERNANCE_ADDRESS|g" workflow.yaml
+sed -i.bak "s|\${GOVERNANCE_CONTRACT}|$GOVERNANCE_ADDRESS|g" workflow.yaml && rm -f workflow.yaml.bak
 echo "✅ CRE workflow.yaml updated with GovernancePolicy address: $GOVERNANCE_ADDRESS"
 
 # 3. Run Prisma migrations

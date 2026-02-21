@@ -2,7 +2,7 @@
 ### AI-Powered Multi-Protocol Treasury Optimizer with Compliance Rails
 *Chainlink Convergence Hackathon 2026 — DeFi & Tokenization Track*
 
-![Solidity](https://img.shields.io/badge/Solidity-0.8.24-blue?logo=solidity)
+![Solidity](https://img.shields.io/badge/Solidity-0.8.26-blue?logo=solidity)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue?logo=typescript)
 ![Next.js](https://img.shields.io/badge/Next.js-14-black?logo=next.js)
 ![Chainlink](https://img.shields.io/badge/Chainlink-CRE-375BD2?logo=chainlink)
@@ -66,7 +66,7 @@ Every allocation decision, LLM rationale, and compliance violation is stored imm
 
 | Layer | Technology |
 |---|---|
-| Smart Contracts | Solidity 0.8.24, Hardhat, OpenZeppelin 5, Chainlink CCIP |
+| Smart Contracts | Solidity 0.8.26, Hardhat, OpenZeppelin 5, Chainlink CCIP |
 | CRE Workflow | TypeScript, Chainlink CRE WASM runtime |
 | Backend | Express.js, Prisma ORM, PostgreSQL, ethers.js v6 |
 | Frontend | Next.js 14 App Router, Wagmi v2, RainbowKit v2, Recharts |
