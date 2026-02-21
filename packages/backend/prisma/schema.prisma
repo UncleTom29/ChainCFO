@@ -1,0 +1,48 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model AllocationReport {
+  id           Int              @id @default(autoincrement())
+  timestamp    DateTime         @default(now())
+  totalValueUsd Float
+  llmRationale String
+  txHash       String?
+  allocations  AllocationEntry[]
+}
+
+model AllocationEntry {
+  id           Int              @id @default(autoincrement())
+  reportId     Int
+  report       AllocationReport @relation(fields: [reportId], references: [id])
+  protocolName String
+  chainId      Int
+  basisPoints  Int
+  apy          Float
+  riskScore    Float
+}
+
+model TreasuryEvent {
+  id          Int      @id @default(autoincrement())
+  eventType   String
+  txHash      String
+  amount      String
+  userAddress String
+  timestamp   DateTime @default(now())
+  chainId     Int
+}
+
+model User {
+  id             Int    @id @default(autoincrement())
+  address        String @unique
+  shares         String
+  totalDeposited String
+}
