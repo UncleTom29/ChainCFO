@@ -1,0 +1,60 @@
+name: CRE Simulations
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  simulate:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: chaincfo-cre-workflow
+            projectRoot: packages/cre-workflow
+            workflowPath: .
+          - name: cre-test-proj-1
+            projectRoot: packages/cre-test/test-proj
+            workflowPath: my-workflow
+          - name: cre-test-proj-2
+            projectRoot: packages/cre-test/test-proj2
+            workflowPath: my-workflow
+          - name: temp-cre-project
+            projectRoot: packages/temp-cre/my-project
+            workflowPath: my-workflow
+          - name: predict-market
+            projectRoot: packages/predict-market
+            workflowPath: prediction
+
+    env:
+      CRE_ETH_PRIVATE_KEY: "0000000000000000000000000000000000000000000000000000000000000001"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.2.23
+
+      - name: Install workflow dependencies
+        shell: bash
+        run: |
+          WORKFLOW_DIR="${{ matrix.projectRoot }}/${{ matrix.workflowPath }}"
+          if [ "$WORKFLOW_DIR" = "${{ matrix.projectRoot }}/." ]; then
+            WORKFLOW_DIR="${{ matrix.projectRoot }}"
+          fi
+
+          if [ -f "$WORKFLOW_DIR/package.json" ]; then
+            bun install --cwd "$WORKFLOW_DIR"
+          else
+            echo "No package.json in $WORKFLOW_DIR, skipping bun install"
+          fi
+
+      - name: Simulate ${{ matrix.name }}
+        run: |
+          bun x --yes cre workflow simulate "${{ matrix.workflowPath }}" --project-root "${{ matrix.projectRoot }}" --target=staging-settings
