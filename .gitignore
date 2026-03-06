@@ -28,3 +28,4 @@ packages/contracts/deployments/*.json
 
 # Misc
 .DS_Store
+packages/tmp-predict.exp
