@@ -1,0 +1,19 @@
+{
+  "name": "@chaincfo/cre-workflow",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "bun x cre-compile",
+    "dev": "bun src/workflow.ts",
+    "test": "bun test"
+  },
+  "dependencies": {
+    "@chainlink/cre-sdk": "^1.1.2",
+    "dotenv": "^16.6.1",
+    "viem": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/bun": "1.2.21",
+    "typescript": "^5.3.3"
+  }
+}

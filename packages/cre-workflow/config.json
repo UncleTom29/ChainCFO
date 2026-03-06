@@ -1,0 +1,6 @@
+{
+    "schedule": "0 */4 * * *",
+    "governanceContract": "0x948Be877894511D8a58039bEBAB48c9984c0c06B",
+    "feedAddress": "0xA2F78ab2355fe2f984D808B5CeE7FD0A93D5270E",
+    "treasuryVaultAddress": "0x71a195Ae6468FC9926D5adbBF2Bb4971860E3e58"
+}

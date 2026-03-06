@@ -1,0 +1,16 @@
+triggers:
+  - type: cron
+    schedule: "0 */4 * * *"
+  - type: evm_log
+    chain: ethereum-sepolia
+    address: "${GOVERNANCE_CONTRACT}"
+    event: "GovernanceVoteExecuted(uint256,tuple)"
+
+capabilities:
+  - http_client
+  - confidential_http
+  - evm_read
+  - evm_write
+  - ccip_write
+
+entrypoint: dist/workflow.js
