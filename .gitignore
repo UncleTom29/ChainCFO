@@ -1,0 +1,30 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Build outputs
+dist/
+coverage/
+.next/
+build/
+.turbo/
+
+# Hardhat
+packages/contracts/artifacts/
+packages/contracts/cache/
+packages/contracts/typechain-types/
+packages/contracts/deployments/*.json
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# Secrets
+**/secrets.local.*
+**/secrets.private.*
+
+# Misc
+.DS_Store
