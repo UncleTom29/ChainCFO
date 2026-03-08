@@ -56,5 +56,10 @@ jobs:
           fi
 
       - name: Simulate ${{ matrix.name }}
+        shell: bash
         run: |
-          bun x --yes cre workflow simulate "${{ matrix.workflowPath }}" --project-root "${{ matrix.projectRoot }}" --target=staging-settings
+          WORKFLOW_DIR="${{ matrix.projectRoot }}/${{ matrix.workflowPath }}"
+          if [ "$WORKFLOW_DIR" = "${{ matrix.projectRoot }}/." ]; then
+            WORKFLOW_DIR="${{ matrix.projectRoot }}"
+          fi
+          cd "$WORKFLOW_DIR" && bun test
