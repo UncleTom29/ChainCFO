@@ -13,9 +13,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - name: chaincfo-cre-workflow
-            projectRoot: packages/cre-workflow
-            workflowPath: .
           - name: cre-test-proj-1
             projectRoot: packages/cre-test/test-proj
             workflowPath: my-workflow

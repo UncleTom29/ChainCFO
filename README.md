@@ -30,7 +30,9 @@ The system continuously evaluates yield opportunities (Aave / Compound / Morpho)
 - [14. Testing](#14-testing)
 - [15. Monitoring & Operations](#15-monitoring--operations)
 - [16. Security Notes](#16-security-notes)
-- [17. Troubleshooting](#17-troubleshooting)
+- [17. Deployed Addresses](#17-deployed-addresses)
+- [18. Chainlink Usage](#18-chainlink-usage)
+- [19. Troubleshooting](#17-troubleshooting)
 
 ---
 
@@ -492,8 +494,27 @@ Operational recommendations:
 
 ---
 
+## 17. Deployed Addresses
 
-## 17. Troubleshooting
+**Sepolia Testnet:**
+- `TreasuryVault`: `0x71a195Ae6468FC9926D5adbBF2Bb4971860E3e58`
+- `GovernancePolicy`: `0x948Be877894511D8a58039bEBAB48c9984c0c06B`
+- `ChainCFOCCIPReceiver`: `0xDbF67623180DED19a0beFB4050dfbe428C4a469A`
+
+---
+
+## 18. Chainlink Usage
+
+ChainCFO heavily relies on the infrastructure of Chainlink to bring intelligent safety to DeFi:
+
+1. **Chainlink CRE**: Powers all workflows via Node-hosted TypeScript computations. [Link to Code](https://github.com/UncleTom29/chaincfo/tree/main/packages/cre-workflow)
+2. **Chainlink CCIP**: Facilitates secure cross-chain capital allocation executed by the AI strategy. [Link to Code](https://github.com/UncleTom29/chaincfo/tree/main/packages/contracts/contracts/ChainCFOCCIPReceiver.sol)
+3. **Chainlink Data Feeds & PoR**: Used by the CRE runtime to deterministically verify stablecoin parity (e.g. USDC/USD) and protocol reserves before allowing any AI-directed rebalance.
+
+---
+
+
+## 19. Troubleshooting
 
 ### Backend starts but indexer does nothing
 Check:
@@ -542,3 +563,5 @@ npm run db:migrate -w backend
 # Start stack with Docker
 docker-compose up -d
 ```
+
+
